@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # include
     # 引数に指定したモジュールを読み込む
-    path('hello/', include('hello.urls')),
+    path('hello/', include('hello.url')),
 ]
