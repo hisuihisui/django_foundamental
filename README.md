@@ -9,9 +9,7 @@ MVCモデル<br>
 M = Model      : データアクセス系の処理<br>
 V = View       : 画面表示<br>
 C = Controller : その他の処理<br>
-<br>
 ↓<br>
-<br>
 MVTモデル（Django）<br>
 MVCモデルと呼び名が違うだけで、考え方はいっしょ<br>
 M = Model      : データアクセス系の処理<br>
@@ -24,4 +22,8 @@ Webページの中に様々な変数などの情報を組み込んだもの<br>
 <br>
 ### なぜtemplatesフォルダ内にアプリケーション名のフォルダが必要か？
 Djangoはtemplatesフォルダからの相対パスで検索する<br>
-　→　例えば、複数のアプリでtemplates直下にindex.htmlをおくと、パスの区別がつかなくなる
+　→　例えば、複数のアプリでtemplates直下にindex.htmlをおくと、パスの区別がつかなくなる<br>
+<br>
+### Formクラス
+前回の入力値を保持しておく<br>
+　→　Formクラスを使用する<br>

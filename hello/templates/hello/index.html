@@ -15,11 +15,27 @@
 </head>
 <body class="container">
     <h1 class="display-4 text-primary mb-4">{{title}}</h1>
-    <p class="h5">{{msg}}</p>
+    {% comment %} |safe：文字列内のHTMLタグをそのままタグとして利用する {% endcomment %}
+    <p class="h5 mt-4">{{message|safe}}</p>
+    <form action="{% url 'index' %}" method="post">
+        {% comment %} CSRF対策 {% endcomment %}
+        {% csrf_token %}
+        {% comment %} ラベルと入力フィールドをまとめる {% endcomment %}
+        {% comment %}
+        <div class="form-group">
+            <label for="msg">message: </label>
+            <input id="msg" type="text" class="form-control" name="msg">
+        </div>
+        {% endcomment %}
+        {% comment %} formクラスを使用してレンダリング {% endcomment %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="click">
+        </table>
+    </form>
     {% comment %}
     {% %} : テンプレートタグ -> 特別な働きをするタグ
     url 名前(urlpatternsでnameに指定した名前) -> 指定した名前のリンクを生成
     {% endcomment %}
-    <p class="h6"><a href={% url goto %}>{{goto}}</a></p>
+    {% comment %} <p class="h6"><a href={% url goto %}>{{goto}}</a></p> {% endcomment %}
 </body>
 </html>

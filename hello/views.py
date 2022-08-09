@@ -1,31 +1,76 @@
 # クライアント側へレスポンスを返す内容を管理するクラス
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import TemplateView
+
+from .forms import HelloForm
+
+
+# viewをクラスとして定義する
+# TemplateViewクラスを継承
+class HelloView(TemplateView):
+
+    def __init__(self):
+        self.params = {
+            'title': 'Hello',
+            'message': 'your data: ',
+            'form': HelloForm()
+        }
+
+    # Getリクエスト
+    def get(self, request):
+        return render(request, 'hello/index.html', self.params)
+
+    #POSTリクエスト
+    def post(self, request):
+        message = 'あなたは、<b>' + request.POST['name'] + \
+            '(' + request.POST['age'] + \
+            ')</b>さんです。<br>メールアドレスは <b>' + request.POST['mail'] + \
+            '</b>ですね。'
+        self.params['message'] = message
+        self.params['form'] = HelloForm(request.POST)
+        return render(request, 'hello/index.html', self.params)
 
 
 def index(request):
     # 辞書にまとめてレンダリングできるようにする
     params = {
-        'title': 'Hello/Index',
-        'msg': 'これは、サンプルで作ったページです。',
-        'goto': 'next'
+        "title": "Hello",
+        "message": "your data: ",
+        "form": HelloForm(),
+        "goto": "next"
     }
+    # requestmethodでの分岐
+    if (request.method == 'POST'):
+        params['message'] = '名前: ' + request.POST['name'] + \
+            '<br>メール: ' + request.POST['mail'] + \
+            '<br>年齢: ' + request.POST['age']
+        params['form'] = HelloForm(request.POST)
     # render(HttpRequestクラス, テンプレート, 辞書)
     # 指定したテンプレートを読み込み、レンダリングして返す
     # 戻り値：TemplateResponseクラス
-    return render(request, 'hello/index.html', params)
+    return render(request, "hello/index.html", params)
+
 
 def next(request):
     # 辞書にまとめてレンダリングできるようにする
-    params = {
-        'title': 'Hello/Next',
-        'msg': 'これは、もう一つのページです。',
-        'goto': 'index'
-    }
+    params = {"title": "Hello/Next", "msg": "これは、もう一つのページです。", "goto": "index"}
     # render(HttpRequestクラス, テンプレート, 辞書)
     # 指定したテンプレートを読み込み、レンダリングして返す
     # 戻り値：TemplateResponseクラス
-    return render(request, 'hello/index.html', params)
+    return render(request, "hello/index.html", params)
+
+
+def form(request):
+    # POSTでデータを受け取る
+    msg = request.POST["msg"]
+    params = {
+        "title": "Hello/Form",
+        "msg": "こんにちは、" + msg + "さん。",
+        "goto": "index",
+    }
+    return render(request, "hello/index.html", params)
+
 
 # # request:HttpRequestというクライアント側の情報をまとめたクラス
 # def index_before(request):
