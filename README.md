@@ -4,12 +4,15 @@ https://www.amazon.co.jp/gp/product/B08CTVCCQ3/ref=ppx_yo_dt_b_d_asin_title_o09?
 ## メモ
 ### 1章　Djangoを使ってみよう
 ### Djangoの起動
+```
 python manage.py runserver
-<br>
+```
 
 ### アプリケーションの作成
-1. アプリケーションのスタート<br>
+1. アプリケーションのスタート
+```
 python manage.py startapp <アプリ名>
+```
 2. settings.pyに追加<br>
 INSTALLED_APPSに登録する<br>
 
@@ -56,15 +59,20 @@ Djangoはtemplatesフォルダからの相対パスで検索する<br>
 ・DBのアップデートにも使われる<br>
 <br>
 手順
-1. マイグレーションファイルの作成<br>
+1. マイグレーションファイルの作成
+```
 python manage.py makemigrations アプリケーション名
-2. マイグレーションの適用<br>
+```
+2. マイグレーションの適用
+```
 python manage.py migrate
-<br>
+```
 
 ### 管理ツール
-1. 管理者の作成<br>
+1. 管理者の作成
+```
 python manage.py createsuperuser
+```
 2. モデルの登録<br>
 admin.py を編集して登録
 3. 管理ツールにログイン<br>
