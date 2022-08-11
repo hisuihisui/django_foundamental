@@ -2,6 +2,17 @@
 https://www.amazon.co.jp/gp/product/B08CTVCCQ3/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1
 
 ## メモ
+### 1章　Djangoを使ってみよう
+### Djangoの起動
+python manage.py runserver
+<br>
+
+### アプリケーションの作成
+1. アプリケーションのスタート<br>
+python manage.py startapp <アプリ名>
+2. settings.pyに追加<br>
+INSTALLED_APPSに登録する<br>
+
 ### 2章　ビューとテンプレート
 ### ビュー=コントローラー？
 MVCモデル<br>
@@ -61,4 +72,26 @@ Djangoを起動し、<br>
 http://localhost:8000/admin
 <br>へアクセスし、ログインする<br>
 
+### Managerクラス
+・モデルのobjectsに入っているインスタンスのクラス<br>
+・Pythonのメソッドをデータベースクエリに翻訳して実行するもの<br>
 
+### allで得られるのは「QuerySet」クラス
+・Setの派生クラス<br>
+・クエリ取得用に拡張されている<br>
+・valuesメソッド<br>
+　1. 取り出したレコードを辞書で返す<br>
+　2. 引数に指定した項目名のみ取り出せる（何も指定しなければ、全項目取得）<br>
+・values_listメソッド<br>
+　1. 取り出したレコードを<b><span style="color: red">タプル</span></b>で返す<br>
+　2. 引数に指定した項目名のみ取り出せる（何も指定しなければ、全項目取得）<br>
+・firstメソッド<br>
+　最初のもののみ返す<br>
+・lastメソッド<br>
+　最後のもののみ返す<br>
+・countメソッド<br>
+　取得したレコード数を返す<br>
+
+### メソッドチェーン
+・メソッドを次々に呼び出していく書き方<br>
+　例) Friends.objects.all().values() <br>
