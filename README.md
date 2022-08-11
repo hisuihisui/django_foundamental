@@ -50,6 +50,7 @@ python manage.py makemigrations アプリケーション名
 2. マイグレーションの適用<br>
 python manage.py migrate
 <br>
+
 ### 管理ツール
 1. 管理者の作成<br>
 python manage.py createsuperuser
