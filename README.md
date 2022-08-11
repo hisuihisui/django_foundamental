@@ -46,8 +46,18 @@ Djangoはtemplatesフォルダからの相対パスで検索する<br>
 <br>
 手順
 1. マイグレーションファイルの作成<br>
-使用コマンド<br>
-　python manage.py makemigrations アプリケーション名
+python manage.py makemigrations アプリケーション名
 2. マイグレーションの適用<br>
-使用コマンド<br>
-　python manage.py migrate
+python manage.py migrate
+<br>
+### 管理ツール
+1. 管理者の作成<br>
+python manage.py createsuperuser
+2. モデルの登録<br>
+admin.py を編集して登録
+3. 管理ツールにログイン<br>
+Djangoを起動し、<br>
+http://localhost:8000/admin
+<br>へアクセスし、ログインする<br>
+
+
