@@ -2,7 +2,7 @@
 https://www.amazon.co.jp/gp/product/B08CTVCCQ3/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1
 
 ## メモ
-### 2章
+### 2章　ビューとテンプレート
 ### ビュー=コントローラー？
 MVCモデル<br>
 M = Model      : データアクセス系の処理<br>
@@ -26,3 +26,28 @@ Djangoはtemplatesフォルダからの相対パスで検索する<br>
 ### Formクラス
 前回の入力値を保持しておく<br>
 　→　Formクラスを使用する<br>
+
+### 3章　モデルとデータベース
+### Djangoで使用できるデータベース
+1. MySQL<br>
+　・オープンソースのデータベース<br>
+　・サーバータイプ<br>
+2. PostgreSQL<br>
+　・linuxで広く使用されている<br>
+　・サーバータイプ<br>
+3. SQLite<br>
+　・エンジンタイプ<br>
+　　　→　データベースファイルに直接アクセスるタイプ<br>
+　・Pythonの標準ライブラリとして組み込まれている<br>
+
+### マイグレーション
+・DBの移行を行うための機能<br>
+・DBのアップデートにも使われる<br>
+<br>
+手順
+1. マイグレーションファイルの作成<br>
+使用コマンド<br>
+　python manage.py makemigrations アプリケーション名
+2. マイグレーションの適用<br>
+使用コマンド<br>
+　python manage.py migrate

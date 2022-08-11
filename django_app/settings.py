@@ -76,10 +76,29 @@ WSGI_APPLICATION = 'django_app.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # SQLite
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # MySQL
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'データベース名',
+    #     'USER': 'ユーザー名',
+    #     'PASSWORD': 'パスワード',
+    #     'HOST': 'ホスト名',
+    #     'PORT': '3306',
+    # }
+    # PostgreSQL
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'データベース名',
+    #     'USER': 'ユーザー名',
+    #     'PASSWORD': 'パスワード',
+    #     'HOST': 'ホスト名',
+    #     'PORT': '5432',
+    # }
 }
 
 
