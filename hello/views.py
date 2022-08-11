@@ -14,7 +14,8 @@ class HelloView(TemplateView):
         self.params = {
             'title': 'Hello',
             'message': 'your data: ',
-            'form': HelloForm()
+            'form': HelloForm(),
+            'result': None,
         }
 
     # Getリクエスト
@@ -29,6 +30,25 @@ class HelloView(TemplateView):
             '</b>ですね。'
         self.params['message'] = message
         self.params['form'] = HelloForm(request.POST)
+        # チェックボックスの結果
+        # ON：'check':ONが入る
+        # OFF：何も値無し -> None
+        # if ('check' in request.POST):
+        #     self.params['result'] = 'Checked!!'
+        # else:
+        #     self.params['result'] = 'not checked...'
+        # chk = request.POST['check_3_select']
+        # self.params['result'] = 'you selected : "' + chk + '".'
+        # プルダウンの結果
+        # ch = request.POST['choice_select']
+        # self.params['result'] = 'you selected : "' + ch + '".'
+        # 複数の選択値を取得
+        ch = request.POST.getlist('choice_selects')
+        result = '<ol class="list-group-item"><b>selected: </b>'
+        for item in ch:
+            result += '<li class="list-group-item>"' + item + '</li>'
+        result += '</ol>'
+        self.params['result'] = result
         return render(request, 'hello/index.html', self.params)
 
 

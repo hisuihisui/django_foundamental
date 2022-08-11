@@ -17,6 +17,8 @@
     <h1 class="display-4 text-primary mb-4">{{title}}</h1>
     {% comment %} |safe：文字列内のHTMLタグをそのままタグとして利用する {% endcomment %}
     <p class="h5 mt-4">{{message|safe}}</p>
+    {% comment %} チェックボックスの結果表示 {% endcomment %}
+    <p class="h5 mt-4">{{result|safe}}</p>
     <form action="{% url 'index' %}" method="post">
         {% comment %} CSRF対策 {% endcomment %}
         {% csrf_token %}
@@ -27,9 +29,12 @@
             <input id="msg" type="text" class="form-control" name="msg">
         </div>
         {% endcomment %}
+        <table>
         {% comment %} formクラスを使用してレンダリング {% endcomment %}
         {{ form.as_p }}
+        <tr><td></td><td>
         <input class="btn btn-primary" type="submit" value="click">
+        </td></tr>
         </table>
     </form>
     {% comment %}
