@@ -9,21 +9,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
 </head>
 <body class="container">
-    <h1 class="display-4 text-primary mb-4">{{title}}</h1>
-    {% comment %} |safe：文字列内のHTMLタグをそのままタグとして利用する {% endcomment %}
+    <h1 class="display-4 text-primary">Friend Detail</h1>
     <table class="table">
         <tr>
-            <th>data</th>
+            <th>id</th>
+            <td>{{ object.id }}</td>
         </tr>
-    {% for item in data %}
         <tr>
-            <td>{{ item }}</td>
-            {% comment %} edit/id へのリンク {% endcomment %}
-            <td><a href="{% url 'edit' item.id %}">Edit</a></td>
-            <td><a href="{% url 'delete' item.id %}">Delete</a></td>
+            <th>name</th>
+            <td>{{ object.name }}</td>
         </tr>
-    {% endfor %}
+        <tr>
+            <th>mail</th>
+            <td>{{ object.mail }}</td>
+        </tr>
+        <tr>
+            <th>gender</th>
+            <td>{{ object.gender }}</td>
+        </tr>
+        <tr>
+            <th>age</th>
+            <td>{{ object.age }}</td>
+        </tr>
     </table>
-    <a href={% url 'create' %}>create</a>
 </body>
 </html>
