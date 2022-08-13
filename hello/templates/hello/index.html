@@ -1,46 +1,56 @@
-{% comment %} 静的ファイルを読み込む際に必要 {% endcomment %}
-{% load static %}
+{% comment %} 静的ファイルを読み込む際に必要 {% endcomment %} {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% comment %} {{}}を使用して、変数や関数の呼び出し等ができる {% endcomment %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} {{}}を使用して、変数や関数の呼び出し等ができる {% endcomment
+    %}
     <title>{{title}}</title>
-    {% comment %} cssファイルの読み込み {% endcomment %}
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'hello/css/style.css' %}" /> {% endcomment %}
-    {% comment %} bootstrapの読み込み {% endcomment %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
-</head>
-<body class="container">
+    {% comment %} cssファイルの読み込み {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'hello/css/style.css' %}"
+    />
+    {% endcomment %} {% comment %} bootstrapの読み込み {% endcomment %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container">
     <h1 class="display-4 text-primary mb-4">{{title}}</h1>
-    {% comment %} |safe：文字列内のHTMLタグをそのままタグとして利用する {% endcomment %}
+    {% comment %} |safe：文字列内のHTMLタグをそのままタグとして利用する {%
+    endcomment %}
     <p class="h5 mt-4">{{message|safe}}</p>
     {% comment %} チェックボックスの結果表示 {% endcomment %}
     <p class="h5 mt-4">{{result|safe}}</p>
     <form action="{% url 'index' %}" method="post">
-        {% comment %} CSRF対策 {% endcomment %}
-        {% csrf_token %}
-        {% comment %} ラベルと入力フィールドをまとめる {% endcomment %}
-        {% comment %}
-        <div class="form-group">
-            <label for="msg">message: </label>
-            <input id="msg" type="text" class="form-control" name="msg">
-        </div>
-        {% endcomment %}
-        <table>
-        {% comment %} formクラスを使用してレンダリング {% endcomment %}
-        {{ form.as_p }}
-        <tr><td></td><td>
-        <input class="btn btn-primary" type="submit" value="click">
-        </td></tr>
-        </table>
+      {% comment %} CSRF対策 {% endcomment %} {% csrf_token %} {% comment %}
+      ラベルと入力フィールドをまとめる {% endcomment %} {% comment %}
+      <div class="form-group">
+        <label for="msg">message: </label>
+        <input id="msg" type="text" class="form-control" name="msg" />
+      </div>
+      {% endcomment %}
+      <table>
+        {% comment %} formクラスを使用してレンダリング {% endcomment %} {{
+        form.as_p }}
+        <tr>
+          <td></td>
+          <td>
+            <input class="btn btn-primary" type="submit" value="click" />
+          </td>
+        </tr>
+      </table>
     </form>
-    {% comment %}
-    {% %} : テンプレートタグ -> 特別な働きをするタグ
-    url 名前(urlpatternsでnameに指定した名前) -> 指定した名前のリンクを生成
+    {% comment %} {% %} : テンプレートタグ -> 特別な働きをするタグ url
+    名前(urlpatternsでnameに指定した名前) -> 指定した名前のリンクを生成 {%
+    endcomment %} {% comment %}
+    <p class="h6"><a href="{%" url goto %}>{{goto}}</a></p>
     {% endcomment %}
-    {% comment %} <p class="h6"><a href={% url goto %}>{{goto}}</a></p> {% endcomment %}
-</body>
+  </body>
 </html>

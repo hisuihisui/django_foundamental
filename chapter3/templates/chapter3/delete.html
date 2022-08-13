@@ -1,32 +1,57 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
-</head>
-<body class="container">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container">
     <h1 class="display-4 text-primary">{{ title }}</h1>
     <p>※以下のレコードを削除します。</p>
     <table class="table">
-        <tr><th>ID</th><td>{{ obj.id }}</td></tr>
-        <tr><th>NAME</th><td>{{ obj.name }}</td></tr>
-        <tr><th>Gender</th><td>
-            {% if obj.gender == False %}male{% endif %}
-            {% if obj.gender == True %}female{% endif %}
-        </td></tr>
-        <tr><th>Email</th><td>{{ obj.mail }}</td></tr>
-        <tr><th>Age</th><td>{{ obj.age }}</td></tr>
-        <tr><th>BirthDay</th><td>{{ obj.birthday }}</td></tr>
-        <form action="{% url 'delete' id %}" method="post">
+      <tr>
+        <th>ID</th>
+        <td>{{ obj.id }}</td>
+      </tr>
+      <tr>
+        <th>NAME</th>
+        <td>{{ obj.name }}</td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>
+          {% if obj.gender == False %}male{% endif %} {% if obj.gender == True
+          %}female{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ obj.mail }}</td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <td>{{ obj.age }}</td>
+      </tr>
+      <tr>
+        <th>BirthDay</th>
+        <td>{{ obj.birthday }}</td>
+      </tr>
+      <form action="{% url 'delete' id %}" method="post">
         {% csrf_token %}
-            <tr><th></th><td>
-                <input type="submit" value="click" class="btn btn-primary">
-            </td></tr>
-        </form>
+        <tr>
+          <th></th>
+          <td>
+            <input type="submit" value="click" class="btn btn-primary" />
+          </td>
+        </tr>
+      </form>
     </table>
-</body>
+  </body>
 </html>
