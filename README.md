@@ -165,3 +165,21 @@ http://localhost:8000/admin
 
 ### リストを使った検索
 <モデル>.objects.filter(項目名__in=list)<br>
+
+
+### 4章 データベースをさらに極める
+### レコードの並び替え
+・昇順<br>
+<モデル>.objects.<allやget,filterなど>.order_by(項目名)
+<br>
+・降順<br>
+<モデル>.objects.<allやget,filterなど>.order_by(項目名).reverse()
+<br>
+
+### レコードの集計
+変数 = <モデル>.objects.aggregate(関数)<br>
+　→　辞書型で返ってくるため、「項目名__関数名」で値を取り出す<br>
+
+### クエリの実行
+・変数 = <モデル>.objects.raw(クエリ)<br>
+・テーブル名：アプリ名_モデル名
