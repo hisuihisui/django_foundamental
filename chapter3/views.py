@@ -1,9 +1,9 @@
-from django.db.models import QuerySet
+from django.db.models import Q,QuerySet
 from django.http import HttpResponse
 from django.shortcuts import redirect,render
 from django.views.generic import ListView, DetailView
 
-from .forms import FriendForm
+from .forms import FindForm,FriendForm
 from .models import Friend
 
 
@@ -80,3 +80,40 @@ class FriendList(ListView):
 
 class FriendDetail(DetailView):
     model = Friend
+
+# find function
+def find(request):
+    if (request.method == 'POST'):
+        form = FindForm(request.POST)
+        find = request.POST['find']
+        # 完全一致
+        # data = Friend.objects.filter(name=find)
+        # 部分一致
+        # data = Friend.objects.filter(name__contains=find)
+        # 大文字小文字を区別しない部分一致
+        # data = Friend.objects.filter(name__icontains=find)
+        # 以下
+        # data = Friend.objects.filter(age__lte=find)
+        # 〇〇以上〇〇以下
+        val = find.split()
+        # data = Friend.objects.filter(age__gte=val[0], age__lte=val[1])
+        # 別の書き方
+        # data = Friend.objects \
+        #     .filter(age__gte=val[0]) \
+        #     .filter(age__lte=val[1])
+        # 論理和(OR)
+        # data = Friend.objects.filter(Q(name__contains=find) | Q(mail__contains=find))
+        # リストを使った検索
+        data = Friend.objects.filter(name__in=val)
+        msg = 'Result: ' + str(data.count())
+    else:
+        msg = 'Search words'
+        form = FindForm()
+        data = Friend.objects.all()
+    params = {
+        'title': 'Find',
+        'message': msg,
+        'form': form,
+        'data': data,
+    }
+    return render(request, 'chapter3/find.html', params)

@@ -10,4 +10,5 @@ urlpatterns = [
     # as_ViewメソッドでViewインスタンスへ変換
     path('list', views.FriendList.as_view()),
     path('detail/<int:pk>', views.FriendDetail.as_view()),
+    path('find', views.find, name='find'),
 ]

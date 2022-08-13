@@ -3,6 +3,10 @@ https://www.amazon.co.jp/gp/product/B08CTVCCQ3/ref=ppx_yo_dt_b_d_asin_title_o09?
 
 ## メモ
 ### 1章　Djangoを使ってみよう
+### Djangoのインストール
+pip install django
+### プロジェクトの作成
+django-admin startproject <プロジェクト名>
 ### Djangoの起動
 ```
 python manage.py runserver
@@ -121,3 +125,43 @@ http://localhost:8000/admin
 　→「pk」というパラメータでプライマリキーを渡す<br>
 ・テンプレート側に「object」で渡す<br>
 ・「<モデル名>_detail.html」というテンプレートを使用する<br>
+
+### 検索
+・Managerクラスのインスタンスを使用<br>
+　→　<モデル>.objects.filter(フィルターの内容)
+
+### あいまいな検索
+・値を含む検索<br>
+　項目名__contains = 値<br>
+・値で始まるものを検索<br>
+　項目名__startswith = 値<br>
+・値で終わるものを検索<br>
+　項目名__endswith = 値<br>
+・大文字小文字を区別しない検索<br>
+　項目名__iexact = 値<br>
+・大文字小文字を区別しないあいまいな検索<br>
+　項目名__icontains = 値<br>
+　項目名__istartswith = 値<br>
+　項目名__iendswith = 値<br>
+
+### 数値の比較
+・等しい<br>
+　項目名 = 値<br>
+・より大きい<br>
+　項目名__gt = 値<br>
+・以上<br>
+　項目名__gte = 値<br>
+・より小さい<br>
+　項目名__lt = 値<br>
+・以下<br>
+　項目名__lte = 値<br>
+
+### 複数条件検索
+・論理積(AND)<br>
+　1. <モデル>.objects.filter(1条件目, 2条件目, ....)<br>
+　2. <モデル>.objects.filter(1条件目).filter(2条件目)<br>
+・論理和(OR)<br>
+　<モデル>.objects.filter( Q(1条件目) | Q(2条件目) ....)<br>
+
+### リストを使った検索
+<モデル>.objects.filter(項目名__in=list)<br>
