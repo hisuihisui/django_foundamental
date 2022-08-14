@@ -15,6 +15,8 @@
   <body class="container">
     <h1 class="display-4 text-primary mb-4">{{title}}</h1>
     <p>{{ message|safe }}</p>
+    <a href="{% url 'create' %}">create</a>
+    <a href="{% url 'find' %}">find</a>
     <table class="table">
       <tr>
         <th>id</th>
@@ -22,6 +24,8 @@
         <th>age</th>
         <th>mail</th>
         <th>birthday</th>
+        <th></th>
+        <th></th>
       </tr>
       {% for item in data %}
       <tr>
@@ -30,14 +34,46 @@
         <td>{{ item.age }}</td>
         <td>{{ item.mail }}</td>
         <td>{{ item.birthday }}</td>
-        {% comment %} edit/id へのリンク {% endcomment %} {% comment %}
+        {% comment %} edit/id へのリンク {% endcomment %}
         <td><a href="{% url 'edit' item.id %}">Edit</a></td>
         <td><a href="{% url 'delete' item.id %}">Delete</a></td>
-        {% endcomment %}
       </tr>
       {% endfor %}
     </table>
-    <a href="{% url 'create' %}">create</a>
-    <a href="{% url 'find' %}">find</a>
+    <ul class="pagination">
+      {% if data.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="{% url 'index' %}">&laquo; first</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'index' data.previous_page_number %}">&laquo; prev</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link">&laquo; first</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link">&laquo; prev</a>
+      </li>
+      {% endif %}
+      <li class="page-item">
+        <a class="page-link">{{data.number}}/{{data.paginator.num_pages}}</a>
+      </li>
+      {% if data.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="{% url 'index' data.next_page_number %}">next &raquo;</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'index' data.paginator.num_pages %}">last &raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link">next &raquo;</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link">last &raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
   </body>
 </html>

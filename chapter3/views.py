@@ -1,9 +1,10 @@
+from django.core.paginator import Paginator
 from django.db.models import Avg, Count, Max, Min, Q, QuerySet, Sum
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 
-from .forms import CheckForm,FindForm, FriendForm
+from .forms import CheckForm, FindForm, FriendForm
 from .models import Friend
 
 # def __new_str__(self):
@@ -19,33 +20,44 @@ from .models import Friend
 
 
 # Create your views here.
-def index(request):
-    # 年齢順に並び替え
-    # data = Friend.objects.all().order_by('age')
+# def index(request):
+#     # 年齢順に並び替え
+#     # data = Friend.objects.all().order_by('age')
+#     data = Friend.objects.all()
+#     re1 = Friend.objects.aggregate(Count("age"))
+#     re2 = Friend.objects.aggregate(Sum("age"))
+#     re3 = Friend.objects.aggregate(Avg("age"))
+#     re4 = Friend.objects.aggregate(Min("age"))
+#     re5 = Friend.objects.aggregate(Max("age"))
+#     msg = (
+#         "Count: "
+#         + str(re1["age__count"])
+#         + "<br>Sum: "
+#         + str(re2["age__sum"])
+#         + "<br>Average: "
+#         + str(re3["age__avg"])
+#         + "<br>Min: "
+#         + str(re4["age__min"])
+#         + "<br>Max: "
+#         + str(re5["age__max"])
+#     )
+#     params = {
+#         "title": "Hello",
+#         "message": msg,
+#         "data": data,
+#     }
+#     return render(request, "chapter3/index.html", params)
+
+
+def index(request, num=1):
     data = Friend.objects.all()
-    re1 = Friend.objects.aggregate(Count("age"))
-    re2 = Friend.objects.aggregate(Sum("age"))
-    re3 = Friend.objects.aggregate(Avg("age"))
-    re4 = Friend.objects.aggregate(Min("age"))
-    re5 = Friend.objects.aggregate(Max("age"))
-    msg = (
-        "Count: "
-        + str(re1["age__count"])
-        + "<br>Sum: "
-        + str(re2["age__sum"])
-        + "<br>Average: "
-        + str(re3["age__avg"])
-        + "<br>Min: "
-        + str(re4["age__min"])
-        + "<br>Max: "
-        + str(re5["age__max"])
-    )
+    page = Paginator(data, 3)
     params = {
-        "title": "Hello",
-        "message": msg,
-        "data": data,
+        'title': 'Hello',
+        'message': '',
+        'data': page.get_page(num),
     }
-    return render(request, "chapter3/index.html", params)
+    return render(request, 'chapter3/index.html', params)
 
 
 # create model
