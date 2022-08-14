@@ -4,9 +4,13 @@ https://www.amazon.co.jp/gp/product/B08CTVCCQ3/ref=ppx_yo_dt_b_d_asin_title_o09?
 ## メモ
 ### 1章　Djangoを使ってみよう
 ### Djangoのインストール
+```
 pip install django
+```
 ### プロジェクトの作成
+```
 django-admin startproject <プロジェクト名>
+```
 ### Djangoの起動
 ```
 python manage.py runserver
