@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 
-from .forms import FindForm, FriendForm
+from .forms import CheckForm,FindForm, FriendForm
 from .models import Friend
 
 # def __new_str__(self):
@@ -151,3 +151,23 @@ def find(request):
         "data": data,
     }
     return render(request, "chapter3/find.html", params)
+
+
+def check(request):
+    params = {
+        'title': 'Check',
+        'message': 'check validation',
+        'form': FriendForm(),
+    }
+
+    if request.method == 'POST':
+        obj = Friend()
+        form = FriendForm(request.POST, instance=obj)
+        params['form'] = form
+
+        if form.is_valid():
+            params['message'] = 'OK!'
+        else:
+            params['message'] = 'no good!'
+
+    return render(request, 'chapter3/check.html', params)
