@@ -22,5 +22,5 @@ urlpatterns = [
     # 引数に指定したモジュールを読み込む
     path('hello/', include('hello.url')),
     path('model/', include('chapter3.url')),
-    # path('sns/', include('sns.url')),
+    path('sns/', include('sns.url')),
 ]

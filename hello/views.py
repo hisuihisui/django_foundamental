@@ -22,7 +22,7 @@ class HelloView(TemplateView):
     def get(self, request):
         return render(request, 'hello/index.html', self.params)
 
-    #POSTリクエスト
+    # POSTリクエスト
     def post(self, request):
         message = 'あなたは、<b>' + request.POST['name'] + \
             '(' + request.POST['age'] + \
