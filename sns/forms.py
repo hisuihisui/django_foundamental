@@ -51,7 +51,7 @@ class GroupSelectForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(GroupSelectForm, self).__init__(*args, **kwargs)
         self.fields['groups'] = forms.ChoiceField(
-            choices=['-', '-'] + [
+            choices=[('-', '-')] + [
                 (item.title, item.title)
                 for item in Group.objects.filter(owner=user)
             ],
@@ -94,7 +94,7 @@ class PostForm(forms.Form):
         super(PostForm, self).__init__(*args, **kwargs)
         public = User.objects.filter(username='public').first()
         self.fields['groups'] = forms.ChoiceField(
-            choices=['-', '-'] + [
+            choices=[('-', '-')] + [
                 (item.title, item.title)
                 for item in Group.objects.filter(owner__in=[user, public])
             ],

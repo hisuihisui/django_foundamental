@@ -29,7 +29,7 @@ def index(request, page=1):
         checkform = GroupCheckForm(request.user, request.POST)
         # チェックされたGroup名をリストにまとめる
         glist = []
-        for item in request.POST.glist("groups"):
+        for item in request.POST.getlist("groups"):
             glist.append(item)
         # Messageの取得
         messages = get_your_group_message(request.user, glist, page)
@@ -128,7 +128,7 @@ def groups(request):
         "create_form": createform,
         "group": sel_group,
     }
-    return render(request.POST, "sns/groups.html", params)
+    return render(request, "sns/groups.html", params)
 
 
 # Friendの追加処理
