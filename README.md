@@ -206,14 +206,14 @@ http://localhost:8000/admin
 　従モデル（多側）<br>
 　　項目 = models.ForeignKey(モデル名)
 <br>
-　　を記載
+　　を記載<br>
 ・1対1<br>
 　主モデル<br>
 　　普通にモデルを定義<br>
 　従モデル<br>
 　　項目 = models.OneToOneField(モデル名)
 <br>
-　　を記載
+　　を記載<br>
 ・多対多<br>
 　主モデル<br>
 　　普通にモデルを定義<br>
